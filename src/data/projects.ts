@@ -49,7 +49,7 @@ export const projects: Project[] = [
     tags: ['TypeScript', 'React'],
     github: 'https://github.com/EVI-DEV1',
     demo: '',
-    featured: true,
+    featured: false,
     example: true,
   },
   {
