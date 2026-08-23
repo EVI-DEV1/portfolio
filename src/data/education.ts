@@ -15,6 +15,30 @@ import type { EducationItem } from '../types'
  */
 export const education: EducationItem[] = [
   {
+    title: 'Engenharia de Software',
+    institution: 'Graduação EAD — em andamento',
+    period: 'Cursando',
+    kind: 'Formação',
+    url: '',
+    badge: '',
+  },
+  {
+    title: 'Técnico em Administração',
+    institution: 'CPET — Centro de Profissionalização e Educação Técnica',
+    period: '',
+    kind: 'Formação',
+    url: '',
+    badge: '',
+  },
+  {
+    title: 'Ensino Médio Técnico em Agropecuária',
+    institution: 'IF Baiano — Campus Valença',
+    period: '2022',
+    kind: 'Formação',
+    url: '',
+    badge: '',
+  },
+  {
     title: 'Formação React Developer',
     institution: 'DIO — Digital Innovation One',
     period: '',

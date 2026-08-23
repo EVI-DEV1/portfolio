@@ -6,29 +6,32 @@ import type { ExperienceItem } from '../types'
  * │  Adicione, remova ou edite etapas livremente; a linha se     │
  * │  redesenha sozinha.                                          │
  * │                                                              │
- * │  ⚠ Conteúdo inicial é um EXEMPLO — troque pelos marcos       │
- * │  reais da sua carreira.                                      │
+ * │  Marcos importados do seu CV real em 2026-08-23.             │
  * ╰──────────────────────────────────────────────────────────────╯
  */
 export const experience: ExperienceItem[] = [
   {
     period: '2022',
-    title: 'Início na programação',
-    description: 'Comecei meus estudos em HTML, CSS e JavaScript.',
+    title: 'Base técnica',
+    description:
+      'Concluí o Ensino Médio Técnico em Agropecuária no IF Baiano (Valença) e comecei a trabalhar com atendimento ao público.',
   },
   {
-    period: '2023',
-    title: 'Estágios e projetos',
-    description: 'Atuei em projetos reais e aperfeiçoei minhas skills em React.',
+    period: '2023–2024',
+    title: 'Administração e vendas',
+    description:
+      'Formação Técnica em Administração (CPET) e experiências com vendas, atendimento e rotinas administrativas.',
   },
   {
-    period: '2024',
-    title: 'Projetos autorais',
-    description: 'Desenvolvi projetos próprios e ganhei mais experiência prática.',
+    period: '2024–2025',
+    title: 'Serveng Engenharia',
+    description:
+      'De Aprendiz a Auxiliar Administrativo no setor de Qualidade: dados no sistema Fulcrum (CCR), Excel e fluxo de informações entre campo e escritório.',
   },
   {
-    period: '2025',
-    title: 'Evolução contínua',
-    description: 'Buscando sempre novos desafios e aprendizados.',
+    period: '2026',
+    title: 'Transição para tecnologia',
+    description:
+      'Assistente da Qualidade na INC Construtora e mergulho no código: Engenharia de Software (EAD) e bootcamps de React e IA na DIO.',
   },
 ]

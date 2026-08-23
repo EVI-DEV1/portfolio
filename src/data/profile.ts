@@ -27,7 +27,7 @@ export const profile: Profile = {
 
   // Coloque seu currículo em /public/cv.pdf e troque para '/cv.pdf'.
   // Enquanto for '', o botão "Baixar CV" fica oculto.
-  resumeUrl: '',
+  resumeUrl: '/cv.pdf',
 
   socials: {
     github: 'https://github.com/EVI-DEV1',
