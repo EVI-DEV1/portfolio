@@ -19,11 +19,13 @@ interface Shooting {
 }
 
 const SHOOTING: Shooting[] = [
-  { top: '6%', left: '78%', delay: 1.2, dur: 9, len: 200 },
-  { top: '15%', left: '104%', delay: 4.6, dur: 12, len: 150 },
-  { top: '2%', left: '46%', delay: 7.9, dur: 11, len: 230 },
-  { top: '30%', left: '94%', delay: 10.3, dur: 13, len: 130 },
-  { top: '9%', left: '62%', delay: 13.8, dur: 14, len: 175 },
+  { top: '6%', left: '78%', delay: 0.8, dur: 7, len: 210 },
+  { top: '15%', left: '104%', delay: 2.4, dur: 9, len: 155 },
+  { top: '2%', left: '46%', delay: 4.1, dur: 8, len: 240 },
+  { top: '30%', left: '94%', delay: 5.7, dur: 10, len: 135 },
+  { top: '9%', left: '62%', delay: 7.2, dur: 9.5, len: 185 },
+  { top: '48%', left: '102%', delay: 3.3, dur: 11, len: 160 },
+  { top: '22%', left: '30%', delay: 6.4, dur: 10.5, len: 200 },
 ]
 
 interface Twinkle {
@@ -38,15 +40,19 @@ const TWINKLES: Twinkle[] = [
   { top: '8%', left: '12%', size: 2, delay: 0, dur: 4.2 },
   { top: '18%', left: '88%', size: 3, delay: 1.1, dur: 5.4 },
   { top: '26%', left: '38%', size: 2, delay: 2.3, dur: 3.8 },
-  { top: '34%', left: '72%', size: 2, delay: 0.7, dur: 4.8 },
+  { top: '34%', left: '72%', size: 3, delay: 0.7, dur: 4.8 },
   { top: '44%', left: '8%', size: 3, delay: 1.9, dur: 5.1 },
   { top: '52%', left: '94%', size: 2, delay: 3.1, dur: 4.4 },
   { top: '58%', left: '28%', size: 2, delay: 0.4, dur: 5.7 },
   { top: '66%', left: '64%', size: 3, delay: 2.6, dur: 4.1 },
   { top: '74%', left: '16%', size: 2, delay: 1.5, dur: 5.9 },
-  { top: '80%', left: '84%', size: 2, delay: 3.6, dur: 4.6 },
+  { top: '80%', left: '84%', size: 3, delay: 3.6, dur: 4.6 },
   { top: '88%', left: '46%', size: 3, delay: 0.9, dur: 5.2 },
   { top: '94%', left: '70%', size: 2, delay: 2.0, dur: 4.9 },
+  { top: '12%', left: '55%', size: 4, delay: 2.9, dur: 6.2 },
+  { top: '40%', left: '48%', size: 2, delay: 1.3, dur: 4.0 },
+  { top: '62%', left: '6%', size: 3, delay: 3.9, dur: 5.5 },
+  { top: '86%', left: '22%', size: 4, delay: 0.6, dur: 6.0 },
 ]
 
 export function Starfield() {
