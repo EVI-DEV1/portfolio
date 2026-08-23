@@ -21,8 +21,9 @@ export const profile: Profile = {
   // Telefone oculto por padrão — preencha (ex.: '(12) 9 9999-9999') se quiser exibir:
   phone: '',
 
-  // Coloque sua foto em /public (ex.: public/profile.jpg) e aponte aqui:
-  avatar: '/profile-placeholder.svg',
+  // Salve sua foto como public/profile.jpg e ela entra no hexágono
+  // automaticamente (enquanto não existir, aparece a arte provisória):
+  avatar: '/profile.jpg',
 
   // Coloque seu currículo em /public/cv.pdf e troque para '/cv.pdf'.
   // Enquanto for '', o botão "Baixar CV" fica oculto.

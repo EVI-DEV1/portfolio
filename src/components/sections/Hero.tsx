@@ -100,6 +100,15 @@ function HexPortrait() {
 
         <g clipPath="url(#hex-clip)">
           <rect width="400" height="440" fill="#16112e" />
+          {/* arte provisória por baixo: se a foto real ainda não existir, ela aparece */}
+          <image
+            href="/profile-placeholder.svg"
+            x="0"
+            y="0"
+            width="400"
+            height="440"
+            preserveAspectRatio="xMidYMid slice"
+          />
           <image
             href={profile.avatar}
             x="0"
