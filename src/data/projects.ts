@@ -22,13 +22,12 @@ export const projects: Project[] = [
     id: 'poupe-ai',
     name: 'Poupe.ai',
     description:
-      'Educador financeiro inteligente com metas, simuladores e IA integrada.',
+      'Educador financeiro inteligente com React e IA Generativa — projeto desenvolvido no Bootcamp Santander AI React Front-end da DIO.',
     image: '',
-    tags: ['React', 'TypeScript', 'Tailwind CSS'],
+    tags: ['React', 'IA Generativa'],
     github: 'https://github.com/EVI-DEV1',
     demo: '',
     featured: true,
-    example: true,
   },
   {
     id: 'taskflow',

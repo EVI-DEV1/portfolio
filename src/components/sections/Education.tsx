@@ -30,9 +30,20 @@ export function Education() {
             return (
               <Reveal key={`${item.title}-${item.institution}`} delay={0.07 * i}>
                 <article className="group flex h-full items-start gap-4 rounded-2xl card-glass p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary-light/40 hover:shadow-[0_16px_40px_-12px_rgba(139,92,246,0.3)]">
-                  <span className="mt-0.5 inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-fuchsia-glow/15 text-primary-soft">
-                    <Icon className="size-5" aria-hidden />
-                  </span>
+                  {item.badge ? (
+                    <span className="mt-0.5 inline-flex size-12 shrink-0 items-center justify-center rounded-xl border border-line bg-white/[0.04] p-1 transition-transform duration-300 group-hover:scale-110">
+                      <img
+                        src={item.badge}
+                        alt=""
+                        loading="lazy"
+                        className="h-full w-full object-contain drop-shadow-[0_2px_8px_rgba(139,92,246,0.35)]"
+                      />
+                    </span>
+                  ) : (
+                    <span className="mt-0.5 inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-fuchsia-glow/15 text-primary-soft">
+                      <Icon className="size-5" aria-hidden />
+                    </span>
+                  )}
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
                       <span
@@ -40,7 +51,9 @@ export function Education() {
                       >
                         {item.kind}
                       </span>
-                      <span className="font-mono text-[0.68rem] text-ink-faint">{item.period}</span>
+                      {item.period ? (
+                        <span className="font-mono text-[0.68rem] text-ink-faint">{item.period}</span>
+                      ) : null}
                     </div>
                     <h3 className="mt-2 font-display text-[0.95rem] font-bold leading-snug text-ink">
                       {item.title}

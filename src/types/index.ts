@@ -94,8 +94,14 @@ export type EducationKind = 'Formação' | 'Bootcamp' | 'Curso' | 'Certificaçã
 export interface EducationItem {
   title: string
   institution: string
+  /** Ano/período (ex.: '2025'). Deixe '' para ocultar. */
   period: string
   kind: EducationKind
   /** Link do certificado/curso. Deixe '' para ocultar. */
   url: string
+  /**
+   * Insígnia do curso: caminho dentro de /public (ex.: '/badges/formacao-react.webp').
+   * Deixe '' para usar o ícone padrão da categoria.
+   */
+  badge?: string
 }

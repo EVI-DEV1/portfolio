@@ -11,16 +11,15 @@ import type { Profile, Stat } from '../types'
  */
 export const profile: Profile = {
   brand: 'EVI',
-  fullName: '[Seu nome completo]',
+  fullName: 'Eliane Vitoriano Luiz',
   role: 'Desenvolvedora Front-end',
   headline:
     'Desenvolvedora Front-end apaixonada por criar experiências web modernas, acessíveis e de alta performance.',
-  location: 'Brasil',
+  location: 'São José dos Campos — SP',
 
-  // Troque pelo seu e-mail público de contato:
-  email: 'seuemail@email.com',
-  // Deixe '' para ocultar o telefone na seção Contato:
-  phone: '(12) 99999-9999',
+  email: 'e.vitoriano@outlook.com',
+  // Telefone oculto por padrão — preencha (ex.: '(12) 9 9999-9999') se quiser exibir:
+  phone: '',
 
   // Coloque sua foto em /public (ex.: public/profile.jpg) e aponte aqui:
   avatar: '/profile-placeholder.svg',

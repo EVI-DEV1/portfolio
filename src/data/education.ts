@@ -2,41 +2,96 @@ import type { EducationItem } from '../types'
 
 /**
  * ╭──────────────────────────────────────────────────────────────╮
- * │  FORMAÇÃO & CURSOS — bootcamps, certificações e formação.    │
- * │  kind aceita: 'Formação' | 'Bootcamp' | 'Curso' |            │
- * │  'Certificação'. url = link do certificado ('' oculta).      │
+ * │  FORMAÇÃO E CURSOS — edite aqui.                             │
  * │                                                              │
- * │  ⚠ Conteúdo inicial é um EXEMPLO — troque pelos seus         │
- * │  cursos e certificados reais.                                │
+ * │  Estes itens foram importados do seu perfil real na DIO      │
+ * │  (web.dio.me/users/eviofc4) em 2026-08-23 — uma seleção      │
+ * │  das 124 conquistas, com as insígnias baixadas em            │
+ * │  /public/badges/. Adicione `period` (ano) e `url` (link do   │
+ * │  certificado) quando quiser.                                 │
+ * │                                                              │
+ * │  kind: 'Formação' | 'Bootcamp' | 'Curso' | 'Certificação'    │
  * ╰──────────────────────────────────────────────────────────────╯
  */
 export const education: EducationItem[] = [
   {
-    title: '[Sua graduação ou curso técnico]',
-    institution: '[Nome da instituição]',
-    period: 'Em andamento',
+    title: 'Formação React Developer',
+    institution: 'DIO — Digital Innovation One',
+    period: '',
     kind: 'Formação',
     url: '',
+    badge: '/badges/formacao-react.webp',
   },
   {
-    title: 'Bootcamp Desenvolvimento Front-end',
+    title: 'Formação GitHub Certification',
     institution: 'DIO — Digital Innovation One',
-    period: '2024',
+    period: '',
+    kind: 'Formação',
+    url: '',
+    badge: '/badges/formacao-github.webp',
+  },
+  {
+    title: 'Formação Lógica de Programação',
+    institution: 'DIO — Digital Innovation One',
+    period: '',
+    kind: 'Formação',
+    url: '',
+    badge: '/badges/formacao-logica.webp',
+  },
+  {
+    title: 'Bootcamp Santander 2026 — AI React Front-end',
+    institution: 'Santander + DIO',
+    period: '',
     kind: 'Bootcamp',
     url: '',
+    badge: '/badges/bootcamp-santander.webp',
   },
   {
-    title: 'Curso de React + TypeScript',
-    institution: '[Plataforma do curso]',
-    period: '2024',
+    title: 'Aceleração Microsoft — Foundry Agentic Engineer',
+    institution: 'Microsoft + DIO',
+    period: '',
+    kind: 'Bootcamp',
+    url: '',
+    badge: '/badges/bootcamp-microsoft.webp',
+  },
+  {
+    title: 'Bootcamp Universia — Primeiros Passos em Power BI',
+    institution: 'Universia + DIO',
+    period: '',
+    kind: 'Bootcamp',
+    url: '',
+    badge: '/badges/bootcamp-universia.webp',
+  },
+  {
+    title: 'Fundamentos do TypeScript',
+    institution: 'DIO — Digital Innovation One',
+    period: '',
     kind: 'Curso',
     url: '',
+    badge: '/badges/curso-typescript.webp',
   },
   {
-    title: '[Sua certificação]',
-    institution: '[Emissor da certificação]',
-    period: '2025',
-    kind: 'Certificação',
+    title: 'Introdução ao Next.js',
+    institution: 'DIO — Digital Innovation One',
+    period: '',
+    kind: 'Curso',
     url: '',
+    badge: '/badges/curso-nextjs.webp',
+  },
+  {
+    title: 'Fundamentos da IA Moderna: ML, LLMs, IA Generativa e Agentes',
+    institution: 'DIO — Digital Innovation One',
+    period: '',
+    kind: 'Curso',
+    url: '',
+    badge: '/badges/curso-ia.webp',
+  },
+  {
+    title: 'Fundamentos de Business Intelligence (BI)',
+    institution: 'DIO — Digital Innovation One',
+    period: '',
+    kind: 'Curso',
+    url: '',
+    badge: '/badges/curso-bi.webp',
   },
 ]
