@@ -19,6 +19,17 @@ import type { Project } from '../types'
  */
 export const projects: Project[] = [
   {
+    id: 'devorbit',
+    name: 'DevOrbit',
+    description:
+      'Plataforma para devs com feed de artigos, cursos, ranking semanal, autenticação e painel administrativo completo.',
+    image: '/projects/devorbit.png',
+    tags: ['React', 'Styled Components', 'API REST'],
+    github: 'https://github.com/EVI-DEV1',
+    demo: '',
+    featured: true,
+  },
+  {
     id: 'poupe-ai',
     name: 'Poupe.ai',
     description:
