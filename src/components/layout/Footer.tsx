@@ -1,5 +1,5 @@
-import { Heart } from 'lucide-react'
-import { profile } from '../../data/profile'
+import { Heart, Lock } from 'lucide-react'
+import { profile } from '../../lib/content'
 import { SocialLinks } from '../ui/SocialLinks'
 
 const FOOTER_LINKS = [
@@ -88,6 +88,14 @@ export function Footer() {
             <Heart className="size-3.5 fill-primary-light text-primary-light" aria-hidden />
             <span className="sr-only">amor</span>
             e React
+            <a
+              href="#/admin"
+              aria-label="Área administrativa"
+              title="Área administrativa"
+              className="ml-2 inline-flex size-7 items-center justify-center rounded-lg border border-line text-ink-faint transition-colors hover:border-line-strong hover:text-ink"
+            >
+              <Lock className="size-3.5" aria-hidden />
+            </a>
           </p>
         </div>
       </div>

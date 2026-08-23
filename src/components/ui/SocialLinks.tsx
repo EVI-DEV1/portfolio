@@ -1,5 +1,5 @@
 import { FaGithub, FaInstagram, FaLinkedinIn } from 'react-icons/fa6'
-import { profile } from '../../data/profile'
+import { profile } from '../../lib/content'
 
 interface SocialLinksProps {
   className?: string

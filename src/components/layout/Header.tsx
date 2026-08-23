@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Download, Menu, X } from 'lucide-react'
-import { profile } from '../../data/profile'
+import { profile } from '../../lib/content'
 import { useActiveSection } from '../../hooks/useActiveSection'
 import { Button } from '../ui/Button'
 

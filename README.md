@@ -121,6 +121,26 @@ Sem a chave o site continua funcionando: o formulário valida, mostra os estados
 
 ---
 
+## 🔐 Painel admin (`/#/admin`)
+
+Área administrativa com login para editar o portfólio **sem abrir o código** — acessível pelo cadeado no rodapé ou digitando `/#/admin` no fim do endereço do site.
+
+**Configurar a senha:**
+
+1. Local: no arquivo `.env`, defina `VITE_ADMIN_PASSWORD=sua_senha` (já criei um `.env` com a senha provisória `evi-admin` — troque!).
+2. Vercel: adicione a mesma variável em **Settings → Environment Variables** e faça redeploy.
+
+**O que dá para fazer:**
+
+- **Projetos:** adicionar, editar, reordenar (↑↓), excluir, marcar Destaque/Exemplo.
+- **Perfil:** nome, cargo, textos, contatos, redes, foto e CV.
+- **Salvar rascunho:** aplica as mudanças na hora, **só no seu navegador** (pré-visualização) — clique em "Ver site" para conferir. "Descartar rascunhos" volta ao publicado.
+- **Exportar:** baixa o `projects.ts`/`profile.ts` pronto. Para publicar para todo mundo: substitua o arquivo em `src/data/`, confira com `npm run dev` e faça commit + push (a Vercel republica sozinha).
+
+> ⚠️ **Entenda o limite:** o site é estático (não tem servidor nem banco). A senha do painel viaja dentro do código JavaScript do site, então é um **portão de conveniência contra curiosos**, não segurança de verdade — quem souber inspecionar o código consegue abrir o painel. Não é um problema: o painel não guarda nada sensível e um curioso só consegue rabiscar o *próprio* navegador dele; o site publicado continua intocado. Por isso mesmo: **não reutilize uma senha importante sua** nessa variável.
+
+---
+
 ## 🚀 Como colocar no GitHub
 
 ```bash

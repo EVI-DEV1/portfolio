@@ -10,7 +10,7 @@ import {
   Phone,
   Send,
 } from 'lucide-react'
-import { profile } from '../../data/profile'
+import { profile } from '../../lib/content'
 import { Button } from '../ui/Button'
 import { Reveal } from '../ui/Reveal'
 import { SocialLinks } from '../ui/SocialLinks'

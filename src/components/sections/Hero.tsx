@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight, Code2, Rocket } from 'lucide-react'
 import { SiReact } from 'react-icons/si'
-import { profile } from '../../data/profile'
+import { profile } from '../../lib/content'
 import { useTypingEffect } from '../../hooks/useTypingEffect'
 import { Button } from '../ui/Button'
 import { SocialLinks } from '../ui/SocialLinks'
