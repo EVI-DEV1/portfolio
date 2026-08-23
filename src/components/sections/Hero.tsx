@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight, Code2, Rocket } from 'lucide-react'
 import { SiReact } from 'react-icons/si'
@@ -62,6 +63,14 @@ function CodeWindow() {
 
 /** Retrato dentro do hexágono neon. */
 function HexPortrait() {
+  // usa a foto real apenas se ela existir e carregar; senão, a arte provisória
+  const [avatarSrc, setAvatarSrc] = useState('/profile-placeholder.svg')
+  useEffect(() => {
+    const probe = new Image()
+    probe.onload = () => setAvatarSrc(profile.avatar)
+    probe.src = profile.avatar
+  }, [])
+
   const reduce = useReducedMotion()
   return (
     <div className="relative mx-auto w-[min(78vw,420px)]">
@@ -100,17 +109,8 @@ function HexPortrait() {
 
         <g clipPath="url(#hex-clip)">
           <rect width="400" height="440" fill="#16112e" />
-          {/* arte provisória por baixo: se a foto real ainda não existir, ela aparece */}
           <image
-            href="/profile-placeholder.svg"
-            x="0"
-            y="0"
-            width="400"
-            height="440"
-            preserveAspectRatio="xMidYMid slice"
-          />
-          <image
-            href={profile.avatar}
+            href={avatarSrc}
             x="0"
             y="0"
             width="400"
