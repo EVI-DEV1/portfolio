@@ -91,6 +91,82 @@ html {
   border-radius: 4px;
 }
 
+/* ── céu ambiente: estrelas cintilando + estrelas cadentes ────── */
+.twinkle-star {
+  position: absolute;
+  border-radius: 9999px;
+  background: #e6ddff;
+  box-shadow: 0 0 6px 1px rgba(167, 139, 250, 0.55);
+  opacity: 0.2;
+  animation: twinkle 5s ease-in-out infinite;
+}
+
+/* trilho: posiciona e inclina a trajetória da estrela cadente
+   (135deg = diagonal caindo para a esquerda, em coordenadas de tela) */
+.shooting-star-track {
+  position: absolute;
+  display: block;
+  transform: rotate(135deg);
+}
+
+/* a estrela em si: risco fino com cauda violeta e cabeça brilhante */
+.shooting-star {
+  display: block;
+  height: 2px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    270deg,
+    #ffffff,
+    rgba(196, 181, 253, 0.7) 30%,
+    rgba(139, 92, 246, 0.35) 60%,
+    transparent
+  );
+  filter: drop-shadow(0 0 6px rgba(196, 181, 253, 0.8));
+  opacity: 0;
+  animation: shooting-star 10s linear infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes shooting-star {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  2% {
+    opacity: 0.9;
+  }
+  13% {
+    transform: translateX(65vmax);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(65vmax);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shooting-star {
+    animation: none;
+    opacity: 0;
+  }
+  .twinkle-star {
+    animation: none;
+    opacity: 0.3;
+  }
+}
+
 /* ── utilitários do mundo visual ──────────────────────────────── */
 @utility text-gradient {
   background: linear-gradient(120deg, var(--color-primary-light), var(--color-fuchsia-glow) 60%, #d8b4fe);

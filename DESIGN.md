@@ -235,7 +235,10 @@ SVG 400×440: hexágono com traço 3px em gradiente `#a78bfa → #a855f7 → #6d
 ### Reveal (grammar de entrada, `Reveal.tsx`)
 Entrada única ao rolar: `opacity 0 → 1` + deslocamento (28px de baixo, ou 32px lateral), 0.7s, ease `[0.16, 1, 0.3, 1]`, `viewport once` com margem -60px; `delay` escalona cards de grade. Com movimento reduzido, renderiza estático.
 
-**A Regra da Entrada Única.** Todo movimento de entrada usa o ease `cubic-bezier(0.16, 1, 0.3, 1)`, roda uma única vez (`once: true`) e tem alternativa estática para `prefers-reduced-motion`. Loops contínuos são reservados a ornamentos `aria-hidden` (ping do badge, flutuação dos chips, rotação do React).
+**A Regra da Entrada Única.** Todo movimento de entrada usa o ease `cubic-bezier(0.16, 1, 0.3, 1)`, roda uma única vez (`once: true`) e tem alternativa estática para `prefers-reduced-motion`. Loops contínuos são reservados a ornamentos `aria-hidden` (ping do badge, flutuação dos chips, rotação do React, céu ambiente).
+
+### Céu ambiente (`Starfield.tsx` + keyframes em `index.css`)
+Camada `fixed inset-0 z-[5] pointer-events-none aria-hidden` sobre toda a página: 12 estrelas fixas de 2–3px cintilando (`twinkle`, 3.8–5.9s, opacidade 0.15→0.7, glow violeta) e 5 estrelas cadentes (`shooting-star`: risco de 2px × 130–230px, trilho `rotate(135deg)` — diagonal caindo para a esquerda —, cauda `#fff → primary-soft → primary → transparent` com cabeça à direita, percurso `translateX(65vmax)` nos primeiros 13% de ciclos de 9–14s, delays escalonados). Só `transform`/`opacity`; posições determinísticas em consts. Sob `prefers-reduced-motion`: cadentes somem, cintilantes ficam estáticas a 0.3. O risco pode cruzar sobre conteúdo — por isso é fino, breve e ≤ 0.9 de opacidade; qualquer aumento de densidade ou brilho viola A Regra do Fundo Silencioso.
 
 ### Superfícies do navegador
 O tema alcança o browser: `::selection` violeta 45%, caret `primary-light`, scrollbar fina com polegar #372a5e (hover #4c3b80) sobre `bg-deep`, `:focus-visible` global em `primary-light` com offset 3px, `theme-color` #0a0416.
