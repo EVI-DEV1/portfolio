@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import type { ReactNode } from 'react'
+import { loadedInBackground } from '../../lib/pageVisibility'
 
 interface RevealProps {
   children: ReactNode
@@ -18,7 +19,7 @@ interface RevealProps {
 export function Reveal({ children, delay = 0, from = 'up', className }: RevealProps) {
   const reduce = useReducedMotion()
 
-  if (reduce) {
+  if (reduce || loadedInBackground) {
     return <div className={className}>{children}</div>
   }
 

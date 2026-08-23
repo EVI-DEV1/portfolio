@@ -182,7 +182,10 @@ export function Projects() {
 
         <LayoutGroup>
           <motion.div layout={reduce ? false : true} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <AnimatePresence mode="popLayout">
+            {/* initial={false}: no primeiro render os cards já nascem visíveis;
+                a animação de entrada fica só para as trocas de filtro (evita
+                cards presos em opacity 0 quando a aba carrega em segundo plano) */}
+            <AnimatePresence initial={false} mode="popLayout">
               {visible.map((project, i) => (
                 <ProjectCard key={project.id} project={project} index={i} />
               ))}

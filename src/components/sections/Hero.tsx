@@ -4,6 +4,7 @@ import { ArrowRight, Code2, Rocket } from 'lucide-react'
 import { SiReact } from 'react-icons/si'
 import { profile } from '../../lib/content'
 import { useTypingEffect } from '../../hooks/useTypingEffect'
+import { loadedInBackground } from '../../lib/pageVisibility'
 import { Button } from '../ui/Button'
 import { SocialLinks } from '../ui/SocialLinks'
 
@@ -159,7 +160,7 @@ export function Hero() {
   const { typed, done } = useTypingEffect(profile.brand)
 
   const enter = (delay: number) =>
-    reduce
+    reduce || loadedInBackground
       ? {}
       : {
           initial: { opacity: 0, y: 24 },
