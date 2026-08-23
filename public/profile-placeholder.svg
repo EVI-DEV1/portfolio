@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 440">
+  <!-- Placeholder da foto de perfil.
+       Troque em src/data/profile.ts → avatar: '/profile.jpg'
+       (coloque sua foto na pasta /public). -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1c1440"/>
+      <stop offset="55%" stop-color="#16112e"/>
+      <stop offset="100%" stop-color="#0e0a20"/>
+    </linearGradient>
+    <linearGradient id="fig" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#6d28d9" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="440" fill="url(#bg)"/>
+  <g opacity="0.35" fill="#a78bfa">
+    <circle cx="120" cy="80" r="2"/><circle cx="150" cy="62" r="2"/><circle cx="280" cy="86" r="2"/>
+    <circle cx="300" cy="120" r="2"/><circle cx="130" cy="330" r="2"/><circle cx="270" cy="320" r="2"/>
+  </g>
+  <!-- silhueta -->
+  <circle cx="200" cy="160" r="48" fill="url(#fig)"/>
+  <path d="M118 306 C118 246 154 216 200 216 C246 216 282 246 282 306 L282 318 L118 318 Z" fill="url(#fig)"/>
+  <text x="200" y="356" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" letter-spacing="5" fill="#c4b5fd">SUA FOTO</text>
+  <text x="200" y="378" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" letter-spacing="5" fill="#c4b5fd">AQUI</text>
+</svg>
