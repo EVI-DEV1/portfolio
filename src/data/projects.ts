@@ -12,9 +12,10 @@ import type { Project } from '../types'
  * │  • tags: alimentam os filtros por tecnologia.                │
  * │  • github / demo: deixe '' para ocultar o botão.             │
  * │  • featured: true = selo "Destaque" no card.                 │
+ * │  • example: true = selo "Exemplo" (conteúdo ilustrativo).    │
  * │                                                              │
- * │  ⚠ Os projetos abaixo são EXEMPLOS ilustrativos — troque     │
- * │  pelos seus projetos reais (nome, descrição e links).        │
+ * │  Lista atual: todos os projetos são REAIS, importados do     │
+ * │  seu GitHub (EVI-DEV1) e da sua máquina em 2026-08-23.       │
  * ╰──────────────────────────────────────────────────────────────╯
  */
 export const projects: Project[] = [
@@ -25,7 +26,7 @@ export const projects: Project[] = [
       'Plataforma para devs com feed de artigos, cursos, ranking semanal, autenticação e painel administrativo completo.',
     image: '/projects/devorbit.png',
     tags: ['React', 'Styled Components', 'API REST'],
-    github: 'https://github.com/EVI-DEV1',
+    github: 'https://github.com/EVI-DEV1/devorbit',
     demo: '',
     featured: true,
   },
@@ -33,47 +34,44 @@ export const projects: Project[] = [
     id: 'poupe-ai',
     name: 'Poupe.ai',
     description:
-      'Educador financeiro inteligente com React e IA Generativa — projeto desenvolvido no Bootcamp Santander AI React Front-end da DIO.',
-    image: '',
-    tags: ['React', 'IA Generativa'],
-    github: 'https://github.com/EVI-DEV1',
-    demo: '',
+      'Educador financeiro inteligente com React e IA Generativa — simulações personalizadas em 6 passos. Projeto do Bootcamp Santander AI React Front-end.',
+    image: '/projects/poupe-ai.png',
+    tags: ['React', 'TypeScript', 'IA Generativa'],
+    github: 'https://github.com/EVI-DEV1/POUPE.AI',
+    demo: 'https://poupe-ai.vercel.app',
     featured: true,
   },
   {
-    id: 'taskflow',
-    name: 'TaskFlow',
+    id: 'estacionamento',
+    name: 'Estacionamento',
     description:
-      'Aplicação para gerenciamento de tarefas com foco em produtividade.',
-    image: '',
-    tags: ['TypeScript', 'React'],
-    github: 'https://github.com/EVI-DEV1',
+      'Sistema de controle de estacionamento com registro de placas, histórico e caixa, em JavaScript puro.',
+    image: '/projects/estacionamento.png',
+    tags: ['JavaScript', 'HTML', 'CSS'],
+    github: 'https://github.com/EVI-DEV1/ESTACIONAMENTO',
     demo: '',
     featured: false,
-    example: true,
   },
   {
-    id: 'ecommerce',
-    name: 'E-commerce',
+    id: 'classificador-herois',
+    name: 'Classificador de Heróis',
     description:
-      'Loja virtual completa com carrinho, pagamentos e painel administrativo.',
+      'Desafios de lógica da DIO: classificação de heróis por XP, cálculo de partidas rankeadas e mecânicas de jogo.',
     image: '',
-    tags: ['React', 'JavaScript', 'Firebase'],
-    github: 'https://github.com/EVI-DEV1',
+    tags: ['JavaScript', 'Lógica'],
+    github: 'https://github.com/EVI-DEV1/CLASSIFICADOR.DE.HEROIS',
     demo: '',
     featured: false,
-    example: true,
   },
   {
-    id: 'weather-app',
-    name: 'Weather App',
+    id: 'contador',
+    name: 'Contador',
     description:
-      'Aplicação de previsão do tempo com geolocalização e API externa.',
+      'Contador interativo manipulando a DOM com JavaScript — um dos primeiros projetos da minha jornada.',
     image: '',
-    tags: ['JavaScript', 'APIs'],
-    github: 'https://github.com/EVI-DEV1',
+    tags: ['JavaScript', 'DOM'],
+    github: 'https://github.com/EVI-DEV1/CONTADOR',
     demo: '',
     featured: false,
-    example: true,
   },
 ]
