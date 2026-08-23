@@ -17,7 +17,7 @@ export function About() {
     <section id="sobre" aria-label="Sobre mim" className="relative bg-bg">
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-24 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16 lg:px-8">
         <div>
-          <SectionHeading label="Sobre mim">
+          <SectionHeading>
             Conheça minha <Accent>trajetória</Accent>
           </SectionHeading>
 

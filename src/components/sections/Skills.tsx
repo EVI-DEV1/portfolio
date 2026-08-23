@@ -14,7 +14,6 @@ export function Skills() {
       <div className="mx-auto max-w-6xl px-5 py-24 lg:px-8">
         <div className="lg:flex lg:items-end lg:justify-between lg:gap-10">
           <SectionHeading
-            label="Minhas skills"
             lead="As tecnologias e ferramentas que uso no dia a dia para transformar ideias em interfaces."
           >
             Tecnologias que <Accent>utilizo</Accent>

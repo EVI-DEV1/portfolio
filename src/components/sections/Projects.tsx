@@ -47,7 +47,7 @@ function ProjectCover({ project, index }: { project: Project; index: number }) {
       </span>
       <span
         aria-hidden
-        className="absolute bottom-3 left-3 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-white/60"
+        className="absolute bottom-3 left-3 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-white/80"
       >
         {project.name}
       </span>
@@ -72,6 +72,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-amber-300/40 bg-black/55 px-2.5 py-1 font-mono text-[0.62rem] font-semibold uppercase tracking-widest text-amber-200 backdrop-blur-sm">
             <Star className="size-3 fill-current" aria-hidden />
             Destaque
+          </span>
+        )}
+        {project.example && (
+          <span className="absolute right-3 top-3 rounded-full border border-line-strong bg-black/55 px-2.5 py-1 font-mono text-[0.62rem] font-semibold uppercase tracking-widest text-ink-soft backdrop-blur-sm">
+            Exemplo
           </span>
         )}
       </div>
@@ -146,7 +151,6 @@ export function Projects() {
       <div className="mx-auto max-w-6xl px-5 py-24 lg:px-8">
         <div className="gap-10 lg:flex lg:items-end lg:justify-between">
           <SectionHeading
-            label="Projetos"
             lead="Uma seleção do que venho construindo — filtre por tecnologia."
           >
             Alguns projetos <Accent>em destaque</Accent>

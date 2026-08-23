@@ -28,6 +28,7 @@ export const projects: Project[] = [
     github: 'https://github.com/EVI-DEV1',
     demo: '',
     featured: true,
+    example: true,
   },
   {
     id: 'taskflow',
@@ -39,6 +40,7 @@ export const projects: Project[] = [
     github: 'https://github.com/EVI-DEV1',
     demo: '',
     featured: true,
+    example: true,
   },
   {
     id: 'ecommerce',
@@ -50,6 +52,7 @@ export const projects: Project[] = [
     github: 'https://github.com/EVI-DEV1',
     demo: '',
     featured: false,
+    example: true,
   },
   {
     id: 'weather-app',
@@ -61,5 +64,6 @@ export const projects: Project[] = [
     github: 'https://github.com/EVI-DEV1',
     demo: '',
     featured: false,
+    example: true,
   },
 ]

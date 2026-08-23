@@ -76,6 +76,11 @@ export interface Project {
   demo: string
   /** true = recebe o selo "Destaque". */
   featured: boolean
+  /**
+   * true = mostra o selo "Exemplo" no card (conteúdo ilustrativo).
+   * Remova (ou deixe false) nos seus projetos reais.
+   */
+  example?: boolean
 }
 
 export interface ExperienceItem {

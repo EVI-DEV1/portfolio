@@ -92,7 +92,7 @@ export function Contact() {
       <div className="relative mx-auto max-w-6xl px-5 py-24 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <div>
-            <SectionHeading label="Contato">
+            <SectionHeading>
               Vamos <Accent>conversar?</Accent>
             </SectionHeading>
             <Reveal delay={0.1}>

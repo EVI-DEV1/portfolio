@@ -19,7 +19,6 @@ export function Education() {
     <section id="cursos" aria-label="Formação e cursos" className="relative bg-bg">
       <div className="mx-auto max-w-6xl px-5 py-24 lg:px-8">
         <SectionHeading
-          label="Formação"
           lead="Formação acadêmica, bootcamps e certificações que sustentam meu trabalho."
         >
           Cursos e <Accent>certificações</Accent>

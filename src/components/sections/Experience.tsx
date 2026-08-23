@@ -12,7 +12,6 @@ export function Experience() {
       />
       <div className="mx-auto max-w-6xl px-5 py-24 lg:px-8">
         <SectionHeading
-          label="Experiência"
           lead="Os marcos da minha evolução profissional e acadêmica."
         >
           Minha jornada <Accent>profissional</Accent>
