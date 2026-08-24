@@ -20,6 +20,17 @@ import type { Project } from '../types'
  */
 export const projects: Project[] = [
   {
+    id: 'dragon-duas-telas',
+    name: 'Dragon · Duas Telas',
+    description:
+      'Um dragão que atravessa fisicamente de um monitor para o outro. Não é transição de página: as duas janelas compartilham um mundo virtual único, e a borda entre os monitores é a coordenada zero desse mundo. Uma janela simula e transmite as 78 vértebras a 60 Hz por BroadcastChannel; durante a passagem, a cabeça já está numa tela enquanto a cauda ainda está na outra.',
+    image: '/projects/dragon-duas-telas.png',
+    tags: ['JavaScript', 'Canvas 2D', 'BroadcastChannel', 'Animação'],
+    github: 'https://github.com/EVI-DEV1/dragon-duas-telas',
+    demo: 'https://dragon-duas-telas.vercel.app',
+    featured: true,
+  },
+  {
     id: 'hand-ctrl',
     name: 'HAND//CTRL',
     description:
