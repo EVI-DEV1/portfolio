@@ -27,7 +27,7 @@ export const projects: Project[] = [
     image: '/projects/hand-ctrl.jpg',
     tags: ['React', 'TypeScript', 'Three.js', 'WebGL', 'MediaPipe'],
     github: 'https://github.com/EVI-DEV1/hand-ctrl',
-    demo: '',
+    demo: 'https://hand-ctrl.vercel.app',
     featured: true,
   },
   {
