@@ -1,5 +1,6 @@
-import { FaGithub, FaInstagram, FaLinkedinIn } from 'react-icons/fa6'
+import { FaGithub, FaInstagram, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa6'
 import { profile } from '../../lib/content'
+import { whatsappLink } from '../../lib/whatsapp'
 
 interface SocialLinksProps {
   className?: string
@@ -16,6 +17,7 @@ export function SocialLinks({ className = '', size = 'md' }: SocialLinksProps) {
     { href: profile.socials.github, label: 'GitHub', Icon: FaGithub },
     { href: profile.socials.linkedin, label: 'LinkedIn', Icon: FaLinkedinIn },
     { href: profile.socials.instagram ?? '', label: 'Instagram', Icon: FaInstagram },
+    { href: whatsappLink(profile.socials.whatsapp ?? ''), label: 'WhatsApp', Icon: FaWhatsapp },
   ].filter((i) => i.href)
 
   return (

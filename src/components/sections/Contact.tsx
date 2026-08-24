@@ -10,7 +10,9 @@ import {
   Phone,
   Send,
 } from 'lucide-react'
+import { FaWhatsapp } from 'react-icons/fa6'
 import { profile } from '../../lib/content'
+import { whatsappLink } from '../../lib/whatsapp'
 import { Button } from '../ui/Button'
 import { Reveal } from '../ui/Reveal'
 import { SocialLinks } from '../ui/SocialLinks'
@@ -113,6 +115,24 @@ export function Contact() {
                     {profile.email}
                   </a>
                 </li>
+                {profile.socials.whatsapp ? (
+                  <li>
+                    <a
+                      href={whatsappLink(profile.socials.whatsapp)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-3.5 text-sm text-ink-soft transition-colors hover:text-ink"
+                    >
+                      <span className="flex size-10 items-center justify-center rounded-xl border border-line bg-white/[0.03] text-primary-light transition-colors group-hover:border-primary-light/50">
+                        <FaWhatsapp className="size-4.5" aria-hidden />
+                      </span>
+                      {profile.socials.whatsapp}
+                      <span className="font-mono text-[0.65rem] uppercase tracking-widest text-ink-faint">
+                        WhatsApp
+                      </span>
+                    </a>
+                  </li>
+                ) : null}
                 {profile.phone ? (
                   <li className="flex items-center gap-3.5 text-sm text-ink-soft">
                     <span className="flex size-10 items-center justify-center rounded-xl border border-line bg-white/[0.03] text-primary-light">

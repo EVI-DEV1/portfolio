@@ -9,6 +9,11 @@ export interface SocialLinks {
   linkedin: string
   /** Deixe '' para ocultar o ícone. */
   instagram?: string
+  /**
+   * WhatsApp com DDD (ex.: '(12) 98231-9139') — vira link wa.me
+   * clicável no site. Deixe '' para ocultar.
+   */
+  whatsapp?: string
 }
 
 export interface Profile {

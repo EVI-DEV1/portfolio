@@ -34,6 +34,8 @@ export const profile: Profile = {
     linkedin: 'https://www.linkedin.com/in/eliane-vitoriano-luiz-1152892b1',
     // Deixe '' para ocultar o Instagram:
     instagram: '',
+    // WhatsApp de serviço (vira link wa.me — deixe '' para ocultar):
+    whatsapp: '(12) 98231-9139',
   },
 
   // Parágrafos da seção "Sobre mim":
