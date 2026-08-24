@@ -20,6 +20,17 @@ import type { Project } from '../types'
  */
 export const projects: Project[] = [
   {
+    id: 'hand-ctrl',
+    name: 'HAND//CTRL',
+    description:
+      'Experiência de visão computacional: sua mão vira o controle de um universo de partículas em WebGL. Rastreamento em tempo real com MediaPipe, reconhecedor de gestos próprio e shaders GLSL — tudo processado no navegador, sem backend.',
+    image: '/projects/hand-ctrl.jpg',
+    tags: ['React', 'TypeScript', 'Three.js', 'WebGL', 'MediaPipe'],
+    github: 'https://github.com/EVI-DEV1/hand-ctrl',
+    demo: '',
+    featured: true,
+  },
+  {
     id: 'devorbit',
     name: 'DevOrbit',
     description:
