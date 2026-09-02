@@ -1,13 +1,14 @@
 import { useState } from 'react'
-import { ArrowDown, ArrowUp, Download, Plus, Save, Trash2 } from 'lucide-react'
+import { ArrowDown, ArrowUp, Download, Loader2, Plus, Save, Trash2, UploadCloud } from 'lucide-react'
 import type { Project } from '../types'
 import { generateProjectsFile, saveProjectsDraft } from '../lib/content'
 import { Button } from '../components/ui/Button'
-import { downloadFile, fieldClass, labelClass } from './adminUi'
+import { downloadFile, fieldClass, labelClass, publish } from './adminUi'
 
 interface Props {
   initial: Project[]
-  onSaved: () => void
+  secret: string
+  onSaved: (kind: 'draft' | 'publish') => void
 }
 
 function slugify(name: string): string {
@@ -35,8 +36,10 @@ function emptyProject(): Project {
   }
 }
 
-export function ProjectsEditor({ initial, onSaved }: Props) {
+export function ProjectsEditor({ initial, secret, onSaved }: Props) {
   const [list, setList] = useState<Project[]>(initial)
+  const [publishing, setPublishing] = useState(false)
+  const [publishError, setPublishError] = useState<string | null>(null)
 
   function update(index: number, patch: Partial<Project>) {
     setList((l) => l.map((p, i) => (i === index ? { ...p, ...patch } : p)))
@@ -64,7 +67,19 @@ export function ProjectsEditor({ initial, onSaved }: Props) {
 
   function handleSave() {
     saveProjectsDraft(normalized())
-    onSaved()
+    onSaved('draft')
+  }
+
+  async function handlePublish() {
+    setPublishing(true)
+    setPublishError(null)
+    const result = await publish('projects', secret, generateProjectsFile(normalized()))
+    setPublishing(false)
+    if (result.ok) {
+      onSaved('publish')
+    } else {
+      setPublishError(result.error ?? 'Falha ao publicar.')
+    }
   }
 
   return (
@@ -212,15 +227,25 @@ export function ProjectsEditor({ initial, onSaved }: Props) {
         Adicionar projeto
       </Button>
 
+      {publishError && (
+        <p role="alert" className="text-[0.83rem] text-danger">
+          {publishError}
+        </p>
+      )}
+
       <div className="flex flex-wrap gap-3 border-t border-line pt-5">
-        <Button type="button" size="sm" onClick={handleSave}>
+        <Button type="button" size="sm" onClick={handlePublish} disabled={publishing || !secret}>
+          {publishing ? <Loader2 className="size-4 animate-spin" aria-hidden /> : <UploadCloud className="size-4" aria-hidden />}
+          Publicar no site
+        </Button>
+        <Button type="button" size="sm" variant="outline" onClick={handleSave}>
           <Save className="size-4" aria-hidden />
           Salvar rascunho
         </Button>
         <Button
           type="button"
           size="sm"
-          variant="outline"
+          variant="ghost"
           onClick={() => downloadFile('projects.ts', generateProjectsFile(normalized()))}
         >
           <Download className="size-4" aria-hidden />

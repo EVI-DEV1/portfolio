@@ -18,3 +18,37 @@ export function downloadFile(filename: string, content: string) {
   link.click()
   URL.revokeObjectURL(url)
 }
+
+export interface PublishResult {
+  ok: boolean
+  error?: string
+  commitUrl?: string
+}
+
+/**
+ * Publica um arquivo de src/data/ direto no site no ar (commit via
+ * /api/publish). `password` é a senha da sessão admin atual —
+ * conferida de novo no servidor a cada chamada.
+ */
+export const VERCEL_DEV_HINT =
+  'Isso não funciona com `npm run dev` puro (Vite não roda funções serverless) — use `npx vercel dev` para testar o painel completo, ou teste direto no site publicado.'
+
+export async function publish(file: string, password: string, content: string): Promise<PublishResult> {
+  try {
+    const res = await fetch('/api/publish', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ file, password, content }),
+    })
+    if (!(res.headers.get('content-type') ?? '').includes('application/json')) {
+      return { ok: false, error: VERCEL_DEV_HINT }
+    }
+    const data = (await res.json().catch(() => null)) as { ok?: boolean; error?: string; commitUrl?: string } | null
+    if (!res.ok || !data?.ok) {
+      return { ok: false, error: data?.error ?? `Falha ao publicar (HTTP ${res.status}).` }
+    }
+    return { ok: true, commitUrl: data.commitUrl }
+  } catch {
+    return { ok: false, error: 'Não consegui falar com /api/publish — confira sua internet.' }
+  }
+}
