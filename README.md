@@ -123,21 +123,32 @@ Sem a chave o site continua funcionando: o formulário valida, mostra os estados
 
 ## 🔐 Painel admin (`/#/admin`)
 
-Área administrativa com login para editar o portfólio **sem abrir o código** — acessível pelo cadeado no rodapé ou digitando `/#/admin` no fim do endereço do site.
+Área administrativa com login para editar o portfólio **sem abrir o código** — acessível pelo cadeado no rodapé ou digitando `/#/admin` no fim do endereço do site. Só quem sabe a senha vê ou publica qualquer coisa; não há link para ele em nenhuma navegação pública.
 
-**Configurar a senha:**
+**O que dá para fazer (5 abas):** Projetos (adicionar, editar, reordenar, excluir, Destaque/Exemplo) · Perfil (nome, cargo, textos, contatos, redes, foto, CV e os 4 cards de números) · Skills (categorias e tecnologias, ícone escolhido numa lista — nunca texto livre) · Experiência (timeline) · Cursos (formação, bootcamps, certificações).
 
-1. Local: no arquivo `.env`, defina `VITE_ADMIN_PASSWORD=sua_senha` (já criei um `.env` com a senha provisória `evi-admin` — troque!).
-2. Vercel: adicione a mesma variável em **Settings → Environment Variables** e faça redeploy.
+Cada aba tem três ações:
 
-**O que dá para fazer:**
+- **Publicar no site** — commita a mudança direto no repositório; a Vercel reconstrói sozinha (~1 min). É o caminho normal, sem terminal e sem git.
+- **Salvar rascunho** — pré-visualiza a mudança só **neste navegador** (localStorage), sem publicar. Útil para conferir antes ("Ver site") ou quando a publicação ainda não está configurada. "Descartar rascunhos" volta ao que está publicado.
+- **Exportar** — baixa o `.ts` pronto, plano B manual (substituir em `src/data/`, `npm run dev` para conferir, commit + push) para quando não há como configurar a publicação direta.
 
-- **Projetos:** adicionar, editar, reordenar (↑↓), excluir, marcar Destaque/Exemplo.
-- **Perfil:** nome, cargo, textos, contatos, redes, foto e CV.
-- **Salvar rascunho:** aplica as mudanças na hora, **só no seu navegador** (pré-visualização) — clique em "Ver site" para conferir. "Descartar rascunhos" volta ao publicado.
-- **Exportar:** baixa o `projects.ts`/`profile.ts` pronto. Para publicar para todo mundo: substitua o arquivo em `src/data/`, confira com `npm run dev` e faça commit + push (a Vercel republica sozinha).
+**Configurar (só precisa ser feito uma vez):**
 
-> ⚠️ **Entenda o limite:** o site é estático (não tem servidor nem banco). A senha do painel viaja dentro do código JavaScript do site, então é um **portão de conveniência contra curiosos**, não segurança de verdade — quem souber inspecionar o código consegue abrir o painel. Não é um problema: o painel não guarda nada sensível e um curioso só consegue rabiscar o *próprio* navegador dele; o site publicado continua intocado. Por isso mesmo: **não reutilize uma senha importante sua** nessa variável.
+1. **Senha** — `.env` local e Vercel (**Settings → Environment Variables**): `ADMIN_SECRET=sua_senha`. Ao contrário da antiga `VITE_ADMIN_PASSWORD`, essa variável **não tem prefixo `VITE_`** de propósito — ela só existe no servidor (funções em `/api`) e nunca é enviada ao navegador, então não dá para ler ela inspecionando o site.
+2. **Token do GitHub** (permite o "Publicar no site" de verdade) — crie um *fine-grained personal access token*:
+   - github.com → foto de perfil → **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**.
+   - Resource owner: `EVI-DEV1`. Repository access: **Only select repositories** → `portfolio_`.
+   - Permissions → Repository permissions → **Contents: Read and write**.
+   - Generate e copie o valor (`github_pat_...` — só aparece uma vez).
+   - `.env` local e Vercel: `GITHUB_TOKEN=esse_valor`.
+3. Redeploy na Vercel depois de adicionar as variáveis.
+
+Sem essas duas variáveis, "Publicar no site" mostra um aviso explicando o que falta — nada quebra, "Salvar rascunho" e "Exportar" continuam funcionando normalmente.
+
+> ⚠️ **Testar localmente:** `npm run dev` (Vite puro) não executa as funções em `/api` — para testar "Publicar no site" na sua máquina, rode `npx vercel dev` (que também lê as duas variáveis do `.env` local). Testar direto no site publicado depois de um `git push` também funciona.
+
+> 🔒 **Sobre o token do GitHub:** ele é *fine-grained* e escopado só ao repositório `portfolio_`, só com permissão de conteúdo — o pior caso de vazamento é alguém mexer nos arquivos desse repositório, nunca na sua conta inteira do GitHub.
 
 ---
 

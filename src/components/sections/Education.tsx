@@ -1,5 +1,5 @@
 import { Award, BookMarked, ExternalLink, GraduationCap, Medal } from 'lucide-react'
-import { education } from '../../data/education'
+import { education } from '../../lib/content'
 import type { EducationKind } from '../../types'
 import { Reveal } from '../ui/Reveal'
 import { Accent, SectionHeading } from '../ui/SectionHeading'

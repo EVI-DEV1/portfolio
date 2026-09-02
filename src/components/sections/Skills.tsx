@@ -1,4 +1,4 @@
-import { skillCategories } from '../../data/skills'
+import { skillCategories } from '../../lib/content'
 import { Reveal } from '../ui/Reveal'
 import { Accent, SectionHeading } from '../ui/SectionHeading'
 import { TechIcon } from '../ui/TechIcon'

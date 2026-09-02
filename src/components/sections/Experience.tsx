@@ -1,5 +1,5 @@
 import { Briefcase } from 'lucide-react'
-import { experience } from '../../data/experience'
+import { experience } from '../../lib/content'
 import { Reveal } from '../ui/Reveal'
 import { Accent, SectionHeading } from '../ui/SectionHeading'
 
