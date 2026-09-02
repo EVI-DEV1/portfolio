@@ -2,49 +2,80 @@ import { useState } from 'react'
 import type { FormEvent } from 'react'
 import {
   ArrowLeft,
+  Award,
+  Briefcase,
   CheckCircle2,
   FolderGit2,
   Info,
   KeyRound,
+  Loader2,
   LogOut,
   RotateCcw,
   ShieldCheck,
+  Sparkles,
   UserRound,
 } from 'lucide-react'
-import { clearDrafts, hasDraft, loadProfile, loadProjects } from '../lib/content'
+import { clearDrafts, hasDraft, loadEducation, loadExperience, loadProfile, loadProjects, loadSkillCategories, loadStats } from '../lib/content'
 import { Button } from '../components/ui/Button'
 import { ProfileEditor } from './ProfileEditor'
 import { ProjectsEditor } from './ProjectsEditor'
-import { fieldClass, labelClass } from './adminUi'
+import { SkillsEditor } from './SkillsEditor'
+import { ExperienceEditor } from './ExperienceEditor'
+import { EducationEditor } from './EducationEditor'
+import { fieldClass, labelClass, VERCEL_DEV_HINT } from './adminUi'
 
 /**
  * Painel administrativo (/#/admin).
  *
- * IMPORTANTE (site estático, sem servidor):
- * - A senha vem de VITE_ADMIN_PASSWORD e é embutida no código do
- *   navegador — o login é um portão de conveniência, não segurança
- *   real. Não reutilize uma senha importante aqui.
- * - "Salvar rascunho" guarda no localStorage DESTE navegador (bom
- *   para pré-visualizar). Para publicar para todo mundo: Exportar
- *   o arquivo, substituir em src/data/ e fazer commit + push.
+ * A senha (ADMIN_SECRET) só existe no servidor — o login e cada
+ * publicação são conferidos em /api/admin-login e /api/publish, nunca
+ * no navegador. "Salvar rascunho" continua guardando no localStorage
+ * DESTE navegador (pré-visualização); "Publicar no site" commita
+ * direto no repositório e a Vercel reconstrói sozinha.
  */
 
-const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD as string | undefined
 const AUTH_KEY = 'evi-admin:session'
+const SECRET_KEY = 'evi-admin:secret'
 
-type Tab = 'perfil' | 'projetos'
+type Tab = 'perfil' | 'projetos' | 'skills' | 'experiencia' | 'cursos'
 
-function Login({ onSuccess }: { onSuccess: () => void }) {
-  const [error, setError] = useState(false)
+function Login({ onSuccess }: { onSuccess: (password: string) => void }) {
+  const [error, setError] = useState<string | null>(null)
+  const [notConfigured, setNotConfigured] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    const password = new FormData(event.currentTarget).get('password')
-    if (password === ADMIN_PASSWORD) {
+    const password = String(new FormData(event.currentTarget).get('password') ?? '')
+    setLoading(true)
+    setError(null)
+    setNotConfigured(false)
+    try {
+      const res = await fetch('/api/admin-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+      })
+      if (!(res.headers.get('content-type') ?? '').includes('application/json')) {
+        setError(VERCEL_DEV_HINT)
+        return
+      }
+      const data = (await res.json().catch(() => null)) as { ok?: boolean; error?: string } | null
+      if (res.status === 503) {
+        setNotConfigured(true)
+        return
+      }
+      if (!res.ok || !data?.ok) {
+        setError(data?.error ?? 'Senha incorreta.')
+        return
+      }
       sessionStorage.setItem(AUTH_KEY, '1')
-      onSuccess()
-    } else {
-      setError(true)
+      sessionStorage.setItem(SECRET_KEY, password)
+      onSuccess(password)
+    } catch {
+      setError('Não consegui falar com /api/admin-login — confira sua internet.')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -61,7 +92,19 @@ function Login({ onSuccess }: { onSuccess: () => void }) {
           </div>
         </div>
 
-        {ADMIN_PASSWORD ? (
+        {notConfigured ? (
+          <div className="rounded-xl border border-line bg-white/[0.03] p-4 text-[0.85rem] leading-relaxed text-ink-soft">
+            <p className="mb-2 font-semibold text-ink">Painel ainda sem senha configurada.</p>
+            <p>
+              Na Vercel: <strong className="text-ink">Settings → Environment Variables</strong>, adicione{' '}
+              <code className="font-mono text-primary-soft">ADMIN_SECRET</code> com a senha que você quiser e faça
+              redeploy. Localmente, coloque a mesma variável no seu <code className="font-mono text-primary-soft">.env</code>{' '}
+              e teste com <code className="font-mono text-primary-soft">npx vercel dev</code> (o{' '}
+              <code className="font-mono text-primary-soft">npm run dev</code> normal não roda as funções do painel).
+              Veja o passo a passo completo no README.
+            </p>
+          </div>
+        ) : (
           <>
             <label htmlFor="admin-password" className={labelClass}>
               Senha
@@ -74,28 +117,18 @@ function Login({ onSuccess }: { onSuccess: () => void }) {
               autoFocus
               autoComplete="current-password"
               className={fieldClass}
-              onChange={() => setError(false)}
+              onChange={() => setError(null)}
             />
             {error && (
               <p role="alert" className="mt-2 text-[0.8rem] text-danger">
-                Senha incorreta — confira o valor de VITE_ADMIN_PASSWORD.
+                {error}
               </p>
             )}
-            <Button type="submit" className="mt-5 w-full">
-              <KeyRound className="size-4" aria-hidden />
+            <Button type="submit" className="mt-5 w-full" disabled={loading}>
+              {loading ? <Loader2 className="size-4 animate-spin" aria-hidden /> : <KeyRound className="size-4" aria-hidden />}
               Entrar
             </Button>
           </>
-        ) : (
-          <div className="rounded-xl border border-line bg-white/[0.03] p-4 text-[0.85rem] leading-relaxed text-ink-soft">
-            <p className="mb-2 font-semibold text-ink">Painel ainda sem senha configurada.</p>
-            <p>
-              Crie um arquivo <code className="font-mono text-primary-soft">.env</code> na raiz do projeto com{' '}
-              <code className="font-mono text-primary-soft">VITE_ADMIN_PASSWORD=sua_senha</code> e rode{' '}
-              <code className="font-mono text-primary-soft">npm run dev</code> de novo. Na Vercel, adicione a mesma
-              variável em Settings → Environment Variables.
-            </p>
-          </div>
         )}
 
         <a
@@ -112,14 +145,24 @@ function Login({ onSuccess }: { onSuccess: () => void }) {
 
 export default function AdminApp() {
   const [authed, setAuthed] = useState(() => sessionStorage.getItem(AUTH_KEY) === '1')
+  const [secret, setSecret] = useState(() => sessionStorage.getItem(SECRET_KEY) ?? '')
   const [tab, setTab] = useState<Tab>('projetos')
-  const [savedAt, setSavedAt] = useState<Date | null>(null)
+  const [status, setStatus] = useState<{ at: Date; kind: 'draft' | 'publish' } | null>(null)
   const [draft, setDraft] = useState(hasDraft)
 
-  if (!authed) return <Login onSuccess={() => setAuthed(true)} />
+  if (!authed) {
+    return (
+      <Login
+        onSuccess={(password) => {
+          setSecret(password)
+          setAuthed(true)
+        }}
+      />
+    )
+  }
 
-  function handleSaved() {
-    setSavedAt(new Date())
+  function handleSaved(kind: 'draft' | 'publish') {
+    setStatus({ at: new Date(), kind })
     setDraft(true)
   }
 
@@ -132,6 +175,7 @@ export default function AdminApp() {
 
   function handleLogout() {
     sessionStorage.removeItem(AUTH_KEY)
+    sessionStorage.removeItem(SECRET_KEY)
     setAuthed(false)
   }
 
@@ -177,11 +221,11 @@ export default function AdminApp() {
         <div className="mt-6 flex items-start gap-3 rounded-xl border border-primary/30 bg-primary/[0.07] p-4 text-[0.83rem] leading-relaxed text-ink-soft">
           <Info className="mt-0.5 size-4 shrink-0 text-primary-light" aria-hidden />
           <p>
-            <strong className="text-ink">Como funciona:</strong> “Salvar rascunho” muda o site só{' '}
-            <em>neste navegador</em> (pré-visualização). Para publicar para todo mundo, clique em{' '}
-            <strong className="text-ink">Exportar</strong>, substitua o arquivo correspondente em{' '}
-            <code className="font-mono text-primary-soft">src/data/</code> e faça commit + push — a Vercel republica
-            sozinha.
+            <strong className="text-ink">Como funciona:</strong> <strong className="text-ink">Publicar no site</strong>{' '}
+            commita direto no repositório — a Vercel reconstrói sozinha em ~1 min. Se preferir só pré-visualizar
+            primeiro, <strong className="text-ink">Salvar rascunho</strong> muda o site apenas <em>neste navegador</em>{' '}
+            (clique em "Ver site" para conferir); "Exportar" continua disponível como plano B caso a publicação ainda
+            não esteja configurada.
           </p>
         </div>
 
@@ -193,6 +237,23 @@ export default function AdminApp() {
           <button type="button" onClick={() => setTab('perfil')} className={tabClass(tab === 'perfil')} aria-pressed={tab === 'perfil'}>
             <UserRound className="size-4" aria-hidden />
             Perfil
+          </button>
+          <button type="button" onClick={() => setTab('skills')} className={tabClass(tab === 'skills')} aria-pressed={tab === 'skills'}>
+            <Sparkles className="size-4" aria-hidden />
+            Skills
+          </button>
+          <button
+            type="button"
+            onClick={() => setTab('experiencia')}
+            className={tabClass(tab === 'experiencia')}
+            aria-pressed={tab === 'experiencia'}
+          >
+            <Briefcase className="size-4" aria-hidden />
+            Experiência
+          </button>
+          <button type="button" onClick={() => setTab('cursos')} className={tabClass(tab === 'cursos')} aria-pressed={tab === 'cursos'}>
+            <Award className="size-4" aria-hidden />
+            Cursos
           </button>
 
           {draft && (
@@ -207,19 +268,21 @@ export default function AdminApp() {
           )}
         </div>
 
-        {savedAt && (
+        {status && (
           <p role="status" className="mt-4 flex items-center gap-2 text-[0.83rem] text-success">
             <CheckCircle2 className="size-4" aria-hidden />
-            Rascunho salvo às {savedAt.toLocaleTimeString('pt-BR')} — abra “Ver site” para conferir.
+            {status.kind === 'publish'
+              ? `Publicado às ${status.at.toLocaleTimeString('pt-BR')} — a Vercel está reconstruindo o site, a mudança aparece em ~1 min.`
+              : `Rascunho salvo às ${status.at.toLocaleTimeString('pt-BR')} — abra "Ver site" para conferir.`}
           </p>
         )}
 
         <div className="mt-6">
-          {tab === 'projetos' ? (
-            <ProjectsEditor initial={loadProjects()} onSaved={handleSaved} />
-          ) : (
-            <ProfileEditor initial={loadProfile()} onSaved={handleSaved} />
-          )}
+          {tab === 'projetos' && <ProjectsEditor initial={loadProjects()} secret={secret} onSaved={handleSaved} />}
+          {tab === 'perfil' && <ProfileEditor initial={loadProfile()} initialStats={loadStats()} secret={secret} onSaved={handleSaved} />}
+          {tab === 'skills' && <SkillsEditor initial={loadSkillCategories()} secret={secret} onSaved={handleSaved} />}
+          {tab === 'experiencia' && <ExperienceEditor initial={loadExperience()} secret={secret} onSaved={handleSaved} />}
+          {tab === 'cursos' && <EducationEditor initial={loadEducation()} secret={secret} onSaved={handleSaved} />}
         </div>
       </div>
     </main>

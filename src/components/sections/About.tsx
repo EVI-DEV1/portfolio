@@ -1,7 +1,6 @@
 import type { ComponentType } from 'react'
 import { ArrowRight, BookOpen, Code2, Rocket, Users } from 'lucide-react'
-import { stats } from '../../data/profile'
-import { profile } from '../../lib/content'
+import { profile, stats } from '../../lib/content'
 import { Button } from '../ui/Button'
 import { Reveal } from '../ui/Reveal'
 import { Accent, SectionHeading } from '../ui/SectionHeading'
