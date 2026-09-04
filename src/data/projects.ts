@@ -37,7 +37,7 @@ export const projects: Project[] = [
       'Vitest',
     ],
     github: 'https://github.com/EVI-DEV1/libris',
-    demo: '',
+    demo: 'https://libris-chi.vercel.app',
     featured: true,
   },
   {
