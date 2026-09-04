@@ -20,6 +20,27 @@ import type { Project } from '../types'
  */
 export const projects: Project[] = [
   {
+    id: 'libris',
+    name: 'Libris',
+    description:
+      'Sistema de biblioteca inteiro: API REST com as regras de negócio e front-end de operação. O empréstimo é do exemplar físico, nunca do título — e é o servidor, dentro de uma transação, que decide se ele pode sair: bloqueia por atraso, por limite de simultâneos e por exemplar separado para quem está na frente da fila. A devolução calcula a multa e promove a próxima reserva sozinha. Duas portas de entrada com endereço próprio, funcionários e direção: só a direção cria login, a conta nasce com senha padrão e o sistema obriga a troca no primeiro acesso.',
+    image: '',
+    tags: [
+      'React',
+      'TypeScript',
+      'Node.js',
+      'Express',
+      'Prisma',
+      'PostgreSQL',
+      'JWT',
+      'Zod',
+      'Vitest',
+    ],
+    github: 'https://github.com/EVI-DEV1/libris',
+    demo: '',
+    featured: true,
+  },
+  {
     id: 'dragon-duas-telas',
     name: 'Dragon · Duas Telas',
     description:
