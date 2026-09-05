@@ -23,7 +23,7 @@ export const projects: Project[] = [
     id: 'libris',
     name: 'Libris',
     description:
-      'Sistema de biblioteca inteiro: API REST com as regras de negócio e front-end de operação. O empréstimo é do exemplar físico, nunca do título — e é o servidor, dentro de uma transação, que decide se ele pode sair: bloqueia por atraso, por limite de simultâneos e por exemplar separado para quem está na frente da fila. A devolução calcula a multa e promove a próxima reserva sozinha. Duas portas de entrada com endereço próprio, funcionários e direção: só a direção cria login, e a conta nasce com a senha padrão da casa. Quem recusa enquanto ela não for trocada é a API, não a tela — esconder o botão não é trava, e a flag é lida do banco a cada chamada, então resetar a senha de alguém derruba na hora a sessão que já estava aberta. 33 testes de integração cobrem as regras, incluindo essa.',
+      'Sistema de biblioteca inteiro: API REST com as regras de negócio e front-end de operação. O empréstimo é do exemplar físico, nunca do título — e é o servidor, dentro de uma transação, que decide se ele pode sair: barra atraso, limite de simultâneos e exemplar separado para quem está na fila. Duas portas de entrada, funcionários e direção. Só a direção cria login, e a conta nasce na senha padrão da casa: quem recusa até ela ser trocada é a API, não a tela. 33 testes de integração cobrem as regras.',
     image: '/projects/libris.png',
     tags: [
       'React',
