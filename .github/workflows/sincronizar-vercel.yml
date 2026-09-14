@@ -33,6 +33,11 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::notice::Falta o segredo VERCEL_TOKEN neste repositório (veja o README, 'Projetos automáticos da Vercel'). Nada a fazer."
+            exit 0
+          fi
+          set -o pipefail
           node scripts/sincronizar-vercel.mjs --seco | tee seco.log
           if grep -q "seriam adicionados" seco.log; then echo "novo=sim" >> "$GITHUB_OUTPUT"; fi
 
