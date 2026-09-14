@@ -20,6 +20,28 @@ import type { Project } from '../types'
  */
 export const projects: Project[] = [
   {
+    id: 'horizonte-painel',
+    name: 'Horizonte · Painel Executivo',
+    description:
+      'Painel executivo de um programa de indicação fictício, num único HTML sem build nem dependência. Numa tela só: quanto deveria ter, quanto já tem, de onde vêm os cadastros e o que merece atenção, com balão dividido e linhas de fibra óptica animadas em SVG. Os números saem de um gerador com semente que se recusa a gravar se as somas da tela não fecharem.',
+    image: '/projects/horizonte-painel.png',
+    tags: ['JavaScript', 'HTML', 'CSS', 'SVG', 'Node.js'],
+    github: 'https://github.com/EVI-DEV1/painel-executivo-captacao',
+    demo: 'https://painel-executivo-captacao.vercel.app',
+    featured: true,
+  },
+  {
+    id: 'torre-controle-rotas',
+    name: 'Torre de Controle · Equipes de Campo',
+    description:
+      'Painel de acompanhamento de equipes de rua num único HTML, em JavaScript puro e sem biblioteca: mapa vetorial em canvas com camadas, programação do dia com versões e rotas parada a parada com folha A4 para impressão. Os alertas (fora da rota, GPS offline, equipe parada, atraso) são medidos sobre uma simulação de GPS determinística: o mesmo dia sempre reproduz o mesmo cenário.',
+    image: '/projects/torre-controle-rotas.png',
+    tags: ['JavaScript', 'Canvas 2D', 'HTML', 'CSS'],
+    github: 'https://github.com/EVI-DEV1/torre-controle-rotas',
+    demo: 'https://torre-controle-rotas.vercel.app',
+    featured: true,
+  },
+  {
     id: 'libris',
     name: 'Libris',
     description:
