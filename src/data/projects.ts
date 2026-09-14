@@ -20,6 +20,17 @@ import type { Project } from '../types'
  */
 export const projects: Project[] = [
   {
+    id: 'centro-inteligencia-operacional',
+    name: 'Torre de Controle · Centro de Inteligência Operacional',
+    description:
+      'Painel executivo em HTML/CSS/JS puros: torre-funil, 10 capítulos, régua por métrica e central de decisões — demonstração com dados fictícios.',
+    image: '/projects/centro-inteligencia-operacional.png',
+    tags: ['JavaScript', 'CSS', 'HTML'],
+    github: 'https://github.com/EVI-DEV1/centro-inteligencia-operacional',
+    demo: 'https://centro-inteligencia-operacional.vercel.app',
+    featured: true,
+  },
+  {
     id: 'horizonte-painel',
     name: 'Horizonte · Painel Executivo',
     description:

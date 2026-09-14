@@ -1,0 +1,63 @@
+name: Projetos da Vercel no portfólio
+
+# Toda hora confere a Vercel; projeto novo com repositório público vira card em src/data/projects.ts,
+# com capa tirada do deploy. O commit cai no repositório que a Vercel observa, que reconstrói o site.
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sincronizar-vercel
+  cancel-in-progress: false
+
+jobs:
+  sincronizar:
+    # o repositório público (vitrine) recebe o mesmo arquivo, mas não tem o segredo: só roda no que a Vercel observa
+    if: github.repository == 'EVI-DEV1/portfolio_'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Confere se tem projeto novo
+        id: seco
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node scripts/sincronizar-vercel.mjs --seco | tee seco.log
+          if grep -q "seriam adicionados" seco.log; then echo "novo=sim" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Instala o navegador das capas
+        if: steps.seco.outputs.novo == 'sim'
+        run: npx --yes playwright@1.55.0 install --with-deps chromium
+
+      - name: Adiciona ao portfólio
+        if: steps.seco.outputs.novo == 'sim'
+        id: sync
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/sincronizar-vercel.mjs
+
+      - name: Publica
+        if: steps.seco.outputs.novo == 'sim'
+        env:
+          ADICIONADOS: ${{ steps.sync.outputs.adicionados }}
+        run: |
+          git config user.name "EVI-DEV1"
+          git config user.email "280050937+EVI-DEV1@users.noreply.github.com"
+          git add src/data/projects.ts scripts/vercel-sync.json public/projects
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore(vercel): adiciona ao portfólio — ${ADICIONADOS}"
+          # o painel admin também commita aqui: junta antes de enviar, nunca força
+          git pull --rebase origin main
+          git push origin HEAD:main

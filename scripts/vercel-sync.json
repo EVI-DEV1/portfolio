@@ -1,0 +1,18 @@
+{
+  "githubDono": "EVI-DEV1",
+  "vercelTeamId": "team_MfrBaKvtlmfGYMxIMQfa0JeT",
+  "playwright": "1.55.0",
+  "ignorados": [
+    "portfolio_"
+  ],
+  "importados": [
+    "prj_LXPA760n9Nhjv9viVh7mOadxhMEB",
+    "prj_Z6GW9uh8uYGVnnwUQ3sNpQY64a9y",
+    "prj_FzviCsJtRzjvOxM7JFOFn01WBMlq",
+    "prj_eZDzKsYRAKcXqVRsG4kTO6rF3aL1",
+    "prj_3GKBnxzK1YbDA8hNngUHXqaIs6DV",
+    "prj_NVPOFypgNax2xNHS6yoxqR4IbyJC",
+    "prj_VXVfF6wbelKjTouLeLLbBxTOIMyo",
+    "prj_PuO98jSfYnUyKgk7p3GNMbD7UBcG"
+  ]
+}

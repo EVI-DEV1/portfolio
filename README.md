@@ -101,6 +101,26 @@ Capas: salve em `public/projects/` (crie a pasta) e aponte o caminho. Os **filtr
 
 ⚠️ Os 4 projetos iniciais são **exemplos ilustrativos** — troque por projetos reais seus.
 
+### ▲ Projetos automáticos da Vercel
+
+Projeto novo na Vercel entra sozinho no portfólio. Toda hora, o GitHub Actions (`.github/workflows/sincronizar-vercel.yml`, só no `portfolio_`) roda `scripts/sincronizar-vercel.mjs`, que:
+
+1. lista os projetos da sua conta na Vercel;
+2. pula o que já está no portfólio (pelo link do deploy ou do GitHub), o que está em `ignorados` e o que já foi importado alguma vez — **apagar um card pelo painel admin não faz ele voltar**;
+3. só aceita projeto com deploy de produção pronto e **repositório público** no `EVI-DEV1` (o ligado à Vercel ou o mesmo nome sem o `_` do fim). Sem repositório público, fica de fora e aparece no log — adicione pelo painel admin se quiser;
+4. monta o card: nome pelo título da página publicada, descrição do GitHub, tags pelo `package.json` e pelas linguagens, **capa tirada do próprio deploy** (1280×800) e selo Destaque, no topo da lista;
+5. commita em `src/data/projects.ts`, `public/projects/` e `scripts/vercel-sync.json` — a Vercel reconstrói o site.
+
+Depois é só ajustar texto, tags ou ordem pelo painel admin, como qualquer outro card.
+
+**Configurar (uma vez):**
+
+1. Vercel → **Account Settings → Tokens → Create Token** · Scope: `ELIANE VITORIANO LUIZ's projects` · Expiration: a que preferir. Copie o valor.
+2. GitHub → repositório **`portfolio_`** → **Settings → Secrets and variables → Actions → New repository secret** · Name: `VERCEL_TOKEN` · Secret: o valor copiado.
+3. Aba **Actions** → **Projetos da Vercel no portfólio** → **Run workflow** para testar na hora (depois ele roda sozinho toda hora).
+
+Rodar na sua máquina: `VERCEL_TOKEN=... node scripts/sincronizar-vercel.mjs --seco` mostra o que seria adicionado sem mexer em nada. Para nunca importar um projeto, coloque o nome dele em `ignorados`, em `scripts/vercel-sync.json`.
+
 ### Experiência e cursos
 `src/data/experience.ts` (timeline) e `src/data/education.ts` (formação/bootcamps/cursos/certificações, com link de certificado opcional). Conteúdo inicial é exemplo/placeholder.
 
